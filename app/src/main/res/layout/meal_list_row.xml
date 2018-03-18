@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border">
+
+
+            <TextView
+                android:id="@+id/timeid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:text="@string/timeid"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/breakfastTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/timeid"
+                android:layout_marginLeft="10dp"
+                android:text="@string/breakfastTag"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/lunchTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/breakfastTag"
+                android:layout_marginLeft="10dp"
+                android:text="@string/lunchtag"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/dinnerTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lunchTag"
+                android:layout_marginLeft="10dp"
+                android:text="@string/dinnerTag"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/snack1Tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dinnerTag"
+                android:layout_marginLeft="10dp"
+                android:text="@string/snack1Tag"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/snack2Tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/snack1Tag"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/snack2Tag"
+                android:textSize="16sp"/>
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>

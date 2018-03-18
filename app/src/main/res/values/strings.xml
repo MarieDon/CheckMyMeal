@@ -1,0 +1,79 @@
+<resources>
+    <string name="app_name">CheckMyMeal</string>
+    <string name="nextButton">Next</string>
+    <string name="Name">Enter your name:</string>
+    <string name="NameSpace" />
+    <string name="Gender">Choose your gender:</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
+    <string name="Weight">How much do you weight?</string>
+    <string name="Height">How tall are you?</string>
+    <string name="imageView" />
+    <string name="Hi">Hi</string>
+    <string name="breakfast">Breakfast</string>
+
+    <string-array name="BreakfastArray">
+        <item> Select Breakfast</item>
+        <item> Porridge</item>
+        <item> Cereal</item>
+        <item> Avocado on Toast</item>
+        <item> Scrambled Egg</item>
+        <item> Smoothie</item>
+    </string-array>
+
+    <string name="lunch">Lunch</string>
+    <string-array name="LunchArray">
+        <item> Select Lunch</item>
+        <item> Salad</item>
+        <item> Turkey Sandwich</item>
+        <item> Soup</item>
+        <item> Chicken with Pasta</item>
+        <item> Salmon with Asparagus</item>
+    </string-array>
+
+    <string name="dinner">Dinner</string>
+    <string-array name="DinnerArray">
+        <item> Select Dinner</item>
+        <item> Salad</item>
+        <item> Steak with Veggies</item>
+        <item> Fish with Potatoes</item>
+        <item> Chicken with Rice</item>
+        <item> Turkey with Cous-Cous</item>
+    </string-array>
+
+    <string name="snack">Snack</string>
+    <string name="ViewButton">View Meal Plan</string>
+    <string name="AddButton">Add Meals</string>
+
+    <string-array name="SnackArray">
+        <item> Select Snack</item>
+        <item> Veggies</item>
+        <item> Fruits</item>
+        <item> Youghurt</item>
+        <item> Nuts</item>
+        <item> Protein Bar</item>
+    </string-array>
+
+    <string name="snack2">Snack #2</string>
+    <string name="PickFoods">Please choose your meals for the today:</string>
+    <string name="NameEntry">...name...</string>
+    <string name="PickFood">Please choose your meals for the day:</string>
+    <string name="timeid">Time</string>
+    <string name="mealTime">Meal</string>
+    <string name="calid">Cal</string>
+    <string name="lunchtag">Lunch</string>
+    <string name="snack1Tag">Snack #1</string>
+    <string name="dinnerTag">Dinner</string>
+    <string name="breakfastTag">Breakfast</string>
+    <string name="snack2Tag">Snack #2</string>
+
+    <string-array name="SnackArray2">
+        <item> Select Snack #2</item>
+        <item> Veggies</item>
+        <item> Fruits</item>
+        <item> Youghurt</item>
+        <item> Nuts</item>
+        <item> Protein Bar</item>
+    </string-array>
+
+</resources>
