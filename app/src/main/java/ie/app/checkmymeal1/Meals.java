@@ -14,17 +14,27 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.io.Serializable;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ie.app.checkmymeal1.Database.DatabaseHandler;
 import ie.app.checkmymeal1.Models.Meal;
 
 public class Meals extends AppCompatActivity {
+    private FirebaseDatabase database;
+    private DatabaseReference dbRef;
     private List<Meal> MealList;
     private ArrayAdapter spinner;
     private TextView nameEntry, calsGender;
@@ -32,8 +42,8 @@ public class Meals extends AppCompatActivity {
     private Button addMeals;
     private Button viewMeals;
     private int cals = 0;
-    private DatabaseHandler db;
     private Button Test;
+
 
 
     @Override
@@ -49,6 +59,9 @@ public class Meals extends AppCompatActivity {
         snackArray2 = findViewById(R.id.snackArray2);
         addMeals = findViewById(R.id.addMeals);
         viewMeals = findViewById(R.id.viewMeals);
+        database = FirebaseDatabase.getInstance();
+        dbRef = database.getReference().child("Meal_Table");
+
         Test = findViewById(R.id.button);
         Test.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +70,6 @@ public class Meals extends AppCompatActivity {
             }
         });
 
-        db = new DatabaseHandler(this) ;
 
         //Breakfast
         spinner = ArrayAdapter.createFromResource(Meals.this, R.array.BreakfastArray, android.R.layout.simple_spinner_item);
@@ -115,6 +127,8 @@ public class Meals extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void saveMealToDB(View v){
         int Calories=0;
@@ -295,19 +309,23 @@ public class Meals extends AppCompatActivity {
         Format format = new SimpleDateFormat("EEEE'-'LLL'-'d k:mm");
         String time = format.format(new Date());
 
-        meal.setTime(time);
-        meal.setBreakfast(breakfast);
-        meal.setLunch(lunch);
-        meal.setDinner(dinner);
-        meal.setSnack1(snack1);
-        meal.setSnack2(snack2);
+        DatabaseReference newMeal = dbRef.push();
+        Map<String, String> savedMeal = new HashMap<>();
+
+
+        savedMeal.put("Time", time);
+        savedMeal.put("Breakfast", breakfast);
+        savedMeal.put("Lunch", lunch);
+        savedMeal.put("Dinner", dinner);
+        savedMeal.put("Snack1", snack1);
+        savedMeal.put("Snack2", snack2);
+        newMeal.getRef().child("").setValue(savedMeal);
+        Log.i("Firebase", newMeal.toString());
 
         if(cals==0)
         {
             addMeals.setEnabled(false);
         }
-
-        db.addMeal(meal);
 
         Log.d("Saved", "Record Inserted");
 
