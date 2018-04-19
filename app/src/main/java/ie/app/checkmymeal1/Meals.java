@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,6 +33,7 @@ public class Meals extends AppCompatActivity {
     private Button viewMeals;
     private int cals = 0;
     private DatabaseHandler db;
+    private Button Test;
 
 
     @Override
@@ -46,6 +49,13 @@ public class Meals extends AppCompatActivity {
         snackArray2 = findViewById(R.id.snackArray2);
         addMeals = findViewById(R.id.addMeals);
         viewMeals = findViewById(R.id.viewMeals);
+        Test = findViewById(R.id.button);
+        Test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Meals.this, FacebookActivity.class));
+            }
+        });
 
         db = new DatabaseHandler(this) ;
 
@@ -78,11 +88,13 @@ public class Meals extends AppCompatActivity {
         Intent intent = getIntent();
         nameEntry.setText(intent.getStringExtra("name"));
         String gender = intent.getStringExtra("gender");
-        if (gender.equals("Male")) {
-            cals = 2500;
-        } else {
-            cals = 2000;
-        }
+//        if (gender.equals("Male")) {
+//            cals = 2500;
+//        } else {
+//            cals = 2000;
+//        }
+
+
         calsGender.setText("You should have " + String.valueOf(cals) + " calories a day");
 
 
@@ -91,21 +103,7 @@ public class Meals extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-//                Meal meal = new Meal();
-//                String text = breakfastSpinner.getSelectedItem().toString();
-//                String text1 = lunchSpinner.getSelectedItem().toString();
-//                String text2 = dinnerSpinner.getSelectedItem().toString();
-//                String text3 = snackSpinner.getSelectedItem().toString();
-//                String text4 = snackArray2.getSelectedItem().toString();
-//
-//                Format format = new SimpleDateFormat("MM'/'dd'/'y hh:mm");
-//                String time = format.format(new Date());
-//
-//                db.addOrder(new Meal(text, text1, text2, text3));
-//
-//                Log.d("", "Record Inserted");
                 saveMealToDB(v);
-                Toast.makeText(Meals.this,"Meals have been added", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -118,23 +116,196 @@ public class Meals extends AppCompatActivity {
         });
     }
 
-    private void saveMealToDB(View v){
+    public void saveMealToDB(View v){
+        int Calories=0;
         Meal meal = new Meal();
-        String text = breakfastSpinner.getSelectedItem().toString();
-        String text1 = lunchSpinner.getSelectedItem().toString();
-        String text2 = dinnerSpinner.getSelectedItem().toString();
-        String text3 = snackSpinner.getSelectedItem().toString();
-        String text4 = snackArray2.getSelectedItem().toString();
+        String breakfast = breakfastSpinner.getSelectedItem().toString();
+        String lunch = lunchSpinner.getSelectedItem().toString();
+        String dinner = dinnerSpinner.getSelectedItem().toString();
+        String snack1 = snackSpinner.getSelectedItem().toString();
+        String snack2 = snackArray2.getSelectedItem().toString();
+        Log.i("Marie", "mycals"+String.valueOf(cals));
+
+
+        switch(breakfast)
+        {
+            case "Porridge - 50cals": Calories=50;
+            cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Breakfast Calories", "mycals"+String.valueOf(cals));
+                break;
+
+            case "Cereal - 125cals": Calories=125;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Avocado on Toast - 150cals": Calories=150;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Scrambled Egg - 150cals": Calories=150;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Smoothie - 50cals": Calories=50;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+        }
+
+        switch(lunch)
+        {
+            case "Salad - 150cals": Calories=150;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(cals));
+                break;
+
+            case "Turkey Sandwich - 150cals": Calories=150;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Soup - 80cals": Calories=80;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Chicken and Pasta - 350cals": Calories=350;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Salmon with Asparagus - 250cals": Calories=250;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+        }
+
+        switch(dinner)
+        {
+            case "Chicken with Broccoli - 250cals": Calories=250;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(cals));
+                break;
+
+            case "Steak with Veggies - 800cals": Calories=800;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Fish with Potatoes - 500cals": Calories=500;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Chicken and Rice - 500cals": Calories=500;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Turkey with Cous-Cous - 760cals": Calories=760;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+        }
+
+        switch(snack1)
+        {
+            case "Veggies - 50cals": Calories=50;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(cals));
+                break;
+
+            case "Fruits - 70cals": Calories=70;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Youghurt - 40cals": Calories=40;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Nuts - 180cals": Calories=180;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Protein Bar - 150cals": Calories=150;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+        }
+
+        switch(snack2)
+        {
+            case "Veggies - 50cals": Calories=50;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(cals));
+                break;
+
+            case "Fruits - 70cals": Calories=70;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Youghurt - 40cals": Calories=40;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Nuts - 180cals": Calories=180;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+
+            case "Protein Bar - 150cals": Calories=150;
+                cals = cals-Calories;
+                calsGender.setText("Calories left to consume " + String.valueOf(cals));
+                Log.i("Calories", "mycals"+String.valueOf(Calories));
+                break;
+        }
 
         Format format = new SimpleDateFormat("EEEE'-'LLL'-'d k:mm");
         String time = format.format(new Date());
 
         meal.setTime(time);
-        meal.setBreakfast(text);
-        meal.setLunch(text1);
-        meal.setDinner(text2);
-        meal.setSnack1(text3);
-        meal.setSnack2(text4);
+        meal.setBreakfast(breakfast);
+        meal.setLunch(lunch);
+        meal.setDinner(dinner);
+        meal.setSnack1(snack1);
+        meal.setSnack2(snack2);
+
+        if(cals==0)
+        {
+            addMeals.setEnabled(false);
+        }
 
         db.addMeal(meal);
 
@@ -143,5 +314,45 @@ public class Meals extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        menu.findItem(R.id.meals).setVisible(false);
+        return  true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch(id) {
+
+            case R.id.view_meals:
+                startActivity(new Intent(Meals.this, MealPlans.class));
+                break;
+
+            case R.id.meals:
+                item.setVisible(false);
+                break;
+
+            case R.id.step_counter:
+                startActivity(new Intent(Meals.this,StepCounter.class));
+                break;
+
+            case R.id.login:
+                startActivity(new Intent(Meals.this, FacebookActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
 

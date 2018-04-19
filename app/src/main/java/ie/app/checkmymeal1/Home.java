@@ -9,10 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import ie.app.checkmymeal1.Database.DatabaseHandler;
 import ie.app.checkmymeal1.Models.Meal;
 

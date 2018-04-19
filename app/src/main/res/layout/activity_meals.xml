@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pink"
+    android:background="@color/colorBG"
     android:minHeight="181dp"
     tools:context="ie.app.checkmymeal1.Meals"
     tools:layout_editor_absoluteY="81dp">
@@ -13,10 +13,11 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="195dp"
+        android:layout_marginEnd="7dp"
         android:contentDescription="@string/imageView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/raspberry" />
+        app:layout_constraintEnd_toStartOf="@+id/snackArray2"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/Hi"
@@ -26,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/Hi"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@android:color/holo_green_light"
+
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -49,11 +50,11 @@
         android:layout_height="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="92dp"
         android:entries="@array/BreakfastArray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/PickFoods" />
+        app:layout_constraintTop_toTopOf="@+id/Hi" />
 
     <Spinner
         android:id="@+id/lunchSpinner"
@@ -95,24 +96,22 @@
         android:id="@+id/addMeals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:background="@android:color/holo_green_light"
-        android:text="@string/AddButton"
-        android:textColorHint="@android:color/holo_green_light"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-
-        />
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/buttonColor"
+        android:text="@string/addMeals"
+        android:textColorHint="@color/buttonColor"
+        app:layout_constraintBottom_toTopOf="@+id/viewMeals"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/viewMeals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@android:color/holo_green_light"
-        android:text="@string/ViewButton"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/buttonColor"
+        android:text="@string/viewMeals"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -135,7 +134,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="11dp"
         android:text="@string/PickFood"
-        android:textColor="@android:color/holo_green_light"
+        android:textColor="@color/buttonColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Hi" />
 
@@ -143,15 +142,23 @@
         android:id="@+id/calGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:textColor="@android:color/background_light"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/snackArray2" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

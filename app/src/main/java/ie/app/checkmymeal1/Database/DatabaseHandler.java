@@ -17,19 +17,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     public DatabaseHandler(Context context) {
-        super(context, Util.DATABASE_NAME , null, Util.DATABASE_VERSION);
+        super(context, Util.DATABASE_NAME, null, Util.DATABASE_VERSION);
     }
 
     //create tables
     @Override
-    public void onCreate(SQLiteDatabase db){
+    public void onCreate(SQLiteDatabase db) {
 
         //SQL = Structured Query Language
         String CREATE_MENU_TABLE = "CREATE TABLE " + Util.TABLE_NAME + "("
                 + Util.KEY_ID + " INTEGER PRIMARY KEY,"
                 + Util.KEY_TIME + " TEXT,"
                 + Util.KEY_BREAKFAST + " TEXT,"
-                + Util.KEY_LUNCH+ " TEXT,"
+                + Util.KEY_LUNCH + " TEXT,"
                 + Util.KEY_DINNER + " TEXT,"
                 + Util.KEY_SNACK1 + " TEXT, "
                 + Util.KEY_SNACK2 + " TEXT " + ")";
@@ -39,16 +39,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //Drops table
-        db.execSQL("DROP TABLE IF EXISTS " +Util.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + Util.TABLE_NAME);
 
         //CREATE TABLE AGAIN
         onCreate(db);
     }
 
-    public void addMeal(Meal meal){
+    public void addMeal(Meal meal) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues value = new ContentValues();
         value.put(Util.KEY_TIME, meal.getTime());
@@ -65,10 +64,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Get an Order
 
-    public Meal getMeal(int id){
+    public Meal getMeal(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query( Util.TABLE_NAME , new String[] {
+        Cursor cursor = db.query(Util.TABLE_NAME, new String[]{
                         Util.KEY_ID,
                         Util.KEY_TIME,
                         Util.KEY_BREAKFAST,
@@ -77,10 +75,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                         Util.KEY_SNACK1,
                         Util.KEY_SNACK2},
                 Util.KEY_ID + "=?"
-                ,new String[] {String.valueOf(id)}
-                ,null, null, null, null  );
+                , new String[]{String.valueOf(id)}
+                , null, null, null, null);
 
-        if (cursor != null )
+        if (cursor != null)
             cursor.moveToFirst();
 
         Meal meal = new Meal(Integer.parseInt(
@@ -103,14 +101,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         //Select all meals
 
-        String selectAll = "SELECT * FROM " +Util.TABLE_NAME;
+        String selectAll = "SELECT * FROM " + Util.TABLE_NAME;
         Cursor cursor = db.rawQuery(selectAll, null);
 
         //Loop through our meals
 
-        if (cursor.moveToFirst()){
-            do{
-                Meal meal= new Meal();
+        if (cursor.moveToFirst()) {
+            do {
+                Meal meal = new Meal();
                 meal.setId(Integer.parseInt(cursor.getString(0)));
                 meal.setTime(cursor.getString(1));
                 meal.setBreakfast(cursor.getString(2));
@@ -119,17 +117,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 meal.setSnack1(cursor.getString(5));
                 meal.setSnack2(cursor.getString(6));
                 mealList.add(meal);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
 
         return mealList;
     }
 
 
-
     //Get meal Count
-    public int getMealCount(){
-        String countQuery = "SELECT * FROM " +Util.TABLE_NAME;
+    public int getMealCount() {
+        String countQuery = "SELECT * FROM " + Util.TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
 
@@ -140,5 +137,28 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     }
 
+    //update
+    public int updateMeals(Meal meal) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(Util.KEY_BREAKFAST, meal.getBreakfast());
+        values.put(Util.KEY_LUNCH, meal.getLunch());
+        values.put(Util.KEY_DINNER, meal.getDinner());
+        values.put(Util.KEY_SNACK1, meal.getSnack1());
+        values.put(Util.KEY_SNACK2, meal.getSnack2());
 
+        //update row
+        return db.update(Util.TABLE_NAME, values,
+                Util.KEY_ID + "=?",
+                new String[]{String.valueOf(meal.getId())});
+    }
+
+    //delete
+    public void deleteMeals(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Util.TABLE_NAME,
+                Util.KEY_ID + "=?",
+                new String[]{String.valueOf(id)});
+        db.close();
+    }
 }

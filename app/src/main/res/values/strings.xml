@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CheckMyMeal</string>
+    <string name="facebook_app_id">587220881654703</string>
+    <string name="fb_login_protocol_scheme">fb587220881654703</string>
     <string name="nextButton">Next</string>
     <string name="Name">Enter your name:</string>
     <string name="NameSpace" />
@@ -14,31 +16,31 @@
 
     <string-array name="BreakfastArray">
         <item> Select Breakfast</item>
-        <item> Porridge</item>
-        <item> Cereal</item>
-        <item> Avocado on Toast</item>
-        <item> Scrambled Egg</item>
-        <item> Smoothie</item>
+        <item> Porridge - 50cals</item>
+        <item> Cereal - 125cals</item>
+        <item> Avocado on Toast - 150cals</item>
+        <item> Scrambled Egg - 150cals</item>
+        <item> Smoothie - 50cals</item>
     </string-array>
 
     <string name="lunch">Lunch</string>
     <string-array name="LunchArray">
         <item> Select Lunch</item>
-        <item> Salad</item>
-        <item> Turkey Sandwich</item>
-        <item> Soup</item>
-        <item> Chicken with Pasta</item>
-        <item> Salmon with Asparagus</item>
+        <item> Salad - 150cals</item>
+        <item> Turkey Sandwich - 150cals</item>
+        <item> Soup - 80cals</item>
+        <item> Chicken with Pasta - 350cals</item>
+        <item> Salmon with Asparagus - 250cals</item>
     </string-array>
 
     <string name="dinner">Dinner</string>
     <string-array name="DinnerArray">
         <item> Select Dinner</item>
-        <item> Salad</item>
-        <item> Steak with Veggies</item>
-        <item> Fish with Potatoes</item>
-        <item> Chicken with Rice</item>
-        <item> Turkey with Cous-Cous</item>
+        <item> Chicken with Broccoli - 250cals</item>
+        <item> Steak with Veggies - 800cals</item>
+        <item> Fish with Potatoes - 500cals</item>
+        <item> Chicken with Rice - 500cals</item>
+        <item> Turkey with Cous-Cous - 760cals</item>
     </string-array>
 
     <string name="snack">Snack</string>
@@ -47,11 +49,11 @@
 
     <string-array name="SnackArray">
         <item> Select Snack</item>
-        <item> Veggies</item>
-        <item> Fruits</item>
-        <item> Youghurt</item>
-        <item> Nuts</item>
-        <item> Protein Bar</item>
+        <item> Veggies - 50cals</item>
+        <item> Fruits - 70cals</item>
+        <item> Youghurt - 40cals</item>
+        <item> Nuts - 180cals</item>
+        <item> Protein Bar - 150cals</item>
     </string-array>
 
     <string name="snack2">Snack #2</string>
@@ -67,13 +69,29 @@
     <string name="breakfastTag">Breakfast</string>
     <string name="snack2Tag">Snack #2</string>
 
+
     <string-array name="SnackArray2">
         <item> Select Snack #2</item>
-        <item> Veggies</item>
-        <item> Fruits</item>
-        <item> Youghurt</item>
-        <item> Nuts</item>
-        <item> Protein Bar</item>
+        <item> Veggies - 50cals</item>
+        <item> Fruits - 70cals</item>
+        <item> Youghurt - 40cals</item>
+        <item> Nuts - 180cals</item>
+        <item> Protein Bar - 150cals</item>
     </string-array>
+    <string name="title_activity_menu">Menu</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="addMeals">1. Add Meals</string>
+    <string name="viewMeals">2. View Meal Plan</string>
+    <string name="textView3">Steps taken</string>
+    <string name="view_meals">View Meals</string>
+    <string name="steps_counter">Steps Counter</string>
+    <string name="search">search</string>
+    <string name="log_in">log_in</string>
+    <string name="MenuSearch">Search</string>
+    <string name="meals">Meals</string>
 
 </resources>

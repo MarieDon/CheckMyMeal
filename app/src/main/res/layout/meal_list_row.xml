@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorBG"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView
@@ -16,16 +17,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/border">
 
-
             <TextView
                 android:id="@+id/timeid"
+                android:textColorHint="@color/buttonColor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:text="@string/timeid"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/breakfastTag"
@@ -72,6 +72,23 @@
                 android:layout_marginBottom="10dp"
                 android:text="@string/snack2Tag"
                 android:textSize="16sp"/>
+
+            <ImageButton
+                android:id="@+id/deleteButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_above="@+id/lunchTag"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="14dp"
+                app:srcCompat="@android:drawable/ic_delete" />
+
+            <ImageButton
+                android:id="@+id/updateButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignStart="@+id/deleteButton"
+                android:layout_alignTop="@+id/snack1Tag"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
 
 
         </RelativeLayout>

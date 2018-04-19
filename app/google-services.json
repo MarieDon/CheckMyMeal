@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "836725927764",
+    "firebase_url": "https://check-my-meal.firebaseio.com",
+    "project_id": "check-my-meal",
+    "storage_bucket": "check-my-meal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836725927764:android:ca80308a989f63f6",
+        "android_client_info": {
+          "package_name": "ie.app.checkmymeal1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836725927764-g2555458ilsgcm7pddflcrpph8ansvpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ie.app.checkmymeal1",
+            "certificate_hash": "944292c366b0391f20eb879d5fe423eec827704f"
+          }
+        },
+        {
+          "client_id": "836725927764-jhu3fl51tdla1204m2b9h2u39mlnd8rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSE_1GUTh6WQo0Zf0UVFIXFfQ1kW9ShMw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836725927764-jhu3fl51tdla1204m2b9h2u39mlnd8rr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
