@@ -63,12 +63,7 @@ public class Meals extends AppCompatActivity {
         dbRef = database.getReference().child("Meal_Table");
 
         Test = findViewById(R.id.button);
-        Test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Meals.this, FacebookActivity.class));
-            }
-        });
+
 
 
         //Breakfast
