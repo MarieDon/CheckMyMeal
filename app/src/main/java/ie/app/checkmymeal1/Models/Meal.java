@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class Meal implements Serializable {
     private int id;
+
+    public Meal() {
+    }
+
     private String time;
     private String breakfast;
     private String lunch;
@@ -11,13 +15,9 @@ public class Meal implements Serializable {
     private String snack1;
     private String snack2;
 
-    public Meal(){
 
-    }
-
-    public Meal(int id, String time, String breakfast, String lunch, String dinner, String snack1, String snack2)
+    public Meal(String time, String breakfast, String lunch, String dinner, String snack1, String snack2)
     {
-        this.id= id;
         this.time = time;
         this.breakfast = breakfast;
         this.lunch = lunch;

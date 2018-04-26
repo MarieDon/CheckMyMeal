@@ -33,8 +33,8 @@ import ie.app.checkmymeal1.Database.DatabaseHandler;
 import ie.app.checkmymeal1.Models.Meal;
 
 public class Meals extends AppCompatActivity {
-    private FirebaseDatabase database;
-    private DatabaseReference dbRef;
+    FirebaseDatabase database;
+    DatabaseReference meal;
     private List<Meal> MealList;
     private ArrayAdapter spinner;
     private TextView nameEntry, calsGender;
@@ -59,8 +59,9 @@ public class Meals extends AppCompatActivity {
         snackArray2 = findViewById(R.id.snackArray2);
         addMeals = findViewById(R.id.addMeals);
         viewMeals = findViewById(R.id.viewMeals);
+
         database = FirebaseDatabase.getInstance();
-        dbRef = database.getReference().child("Meal_Table");
+        meal = database.getReference("Meal_Table");
 
         Test = findViewById(R.id.button);
 
@@ -110,7 +111,8 @@ public class Meals extends AppCompatActivity {
         {
             @Override
             public void onClick(View v) {
-                saveMealToDB(v);
+                Log.i("button Clicked", "Hello");
+                saveMealToDB();
             }
         });
 
@@ -125,15 +127,14 @@ public class Meals extends AppCompatActivity {
 
 
 
-    public void saveMealToDB(View v){
+    public void saveMealToDB(){
         int Calories=0;
-        Meal meal = new Meal();
         String breakfast = breakfastSpinner.getSelectedItem().toString();
         String lunch = lunchSpinner.getSelectedItem().toString();
         String dinner = dinnerSpinner.getSelectedItem().toString();
         String snack1 = snackSpinner.getSelectedItem().toString();
         String snack2 = snackArray2.getSelectedItem().toString();
-        Log.i("Marie", "mycals"+String.valueOf(cals));
+
 
 
         switch(breakfast)
@@ -304,23 +305,27 @@ public class Meals extends AppCompatActivity {
         Format format = new SimpleDateFormat("EEEE'-'LLL'-'d k:mm");
         String time = format.format(new Date());
 
-        DatabaseReference newMeal = dbRef.push();
-        Map<String, String> savedMeal = new HashMap<>();
+//        DatabaseReference newMeal = dbRef.push();
+//        Map<String, String> savedMeal = new HashMap<>();
+
+        Meal mymeal = new Meal(time, breakfast, lunch, dinner, snack1, snack2);
 
 
-        savedMeal.put("Time", time);
-        savedMeal.put("Breakfast", breakfast);
-        savedMeal.put("Lunch", lunch);
-        savedMeal.put("Dinner", dinner);
-        savedMeal.put("Snack1", snack1);
-        savedMeal.put("Snack2", snack2);
-        newMeal.getRef().child("").setValue(savedMeal);
-        Log.i("Firebase", newMeal.toString());
+//        savedMeal.put("Time", time);
+//        savedMeal.put("Breakfast", breakfast);
+//        savedMeal.put("Lunch", lunch);
+//        savedMeal.put("Dinner", dinner);
+//        savedMeal.put("Snack1", snack1);
+//        savedMeal.put("Snack2", snack2);
+//        newMeal.getRef().child("").setValue(savedMeal);
 
-        if(cals==0)
-        {
-            addMeals.setEnabled(false);
-        }
+        meal.push().setValue(mymeal);
+
+
+//        if(cals==0)
+//        {
+//            addMeals.setEnabled(false);
+//        }
 
         Log.d("Saved", "Record Inserted");
 

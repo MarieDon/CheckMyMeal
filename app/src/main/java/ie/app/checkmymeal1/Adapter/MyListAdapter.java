@@ -87,17 +87,17 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder
                 case R.id.deleteButton:
                     Position = getAdapterPosition();
                      meal = mealList.get(Position);
-                     deleteMeal(meal.getId());
+                    // deleteMeal(meal.getId());
                     break;
             }
         }
 
-        private void deleteMeal(int ID) {
-            DatabaseHandler db = new DatabaseHandler(context);
-            db.deleteMeals(ID);
-            mealList.remove(getAdapterPosition());
-            notifyItemRemoved(getAdapterPosition());
-        }
+//        private void deleteMeal(int ID) {
+//            DatabaseHandler db = new DatabaseHandler(context);
+//            db.deleteMeals(ID);
+//            mealList.remove(getAdapterPosition());
+//            notifyItemRemoved(getAdapterPosition());
+//        }
 
     }
 }

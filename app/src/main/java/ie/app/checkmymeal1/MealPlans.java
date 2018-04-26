@@ -8,46 +8,74 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.DataOutput;
 import java.util.ArrayList;
 import java.util.List;
 
+import ie.app.checkmymeal1.Adapter.MealsViewHolder;
 import ie.app.checkmymeal1.Adapter.MyListAdapter;
 import ie.app.checkmymeal1.Database.DatabaseHandler;
 import ie.app.checkmymeal1.Models.Meal;
 
 public class MealPlans extends AppCompatActivity {
 
-    private RecyclerView RecyclerView;
-    private MyListAdapter RecyclerAdapter;
-    private DatabaseHandler db;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+
+    private FirebaseRecyclerAdapter<Meal, MealsViewHolder> adapter;
+
     private List<Meal> mealList;
+
+    private DatabaseReference mDatabase;
+    private FirebaseDatabase db;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meal_plans);
 
-        RecyclerView= findViewById(R.id.recyclerView);
-        RecyclerView.setHasFixedSize(true);
-        RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        db = FirebaseDatabase.getInstance();
+        mDatabase = db.getReference("Meal_Table");
 
-        db = new DatabaseHandler(this);
-        mealList = db.getAllMeals();
+        recyclerView= findViewById(R.id.recyclerView);
+                recyclerView.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(this);
+                recyclerView.setLayoutManager(layoutManager);
 
-        for(Meal meal : mealList){
-            String log = "ID: " + meal.getId() + " " + meal.getTime() + ""
-                    + meal.getBreakfast() + " " + meal.getLunch() + " " + meal.getDinner() +
-                    " " + meal.getSnack1() + " " + meal.getSnack2();
 
-            Log.d("Meals Orders", log);
+        adapter = new FirebaseRecyclerAdapter<Meal, MealsViewHolder>(Meal.class,
+                R.layout.meal_list_row, MealsViewHolder.class, mDatabase) {
 
+            @Override
+            protected void populateViewHolder(MealsViewHolder viewHolder, Meal model, final int position) {
+
+                 viewHolder.time.setText("Time: " + model.getTime());
+                 viewHolder.breakfast.setText("Breakfast: " + model.getBreakfast());
+                 viewHolder.lunch.setText("Lunch: " + model.getLunch());
+                 viewHolder.dinner.setText("Dinner: " + model.getDinner());
+                 viewHolder.snack1.setText("Snack1: " + model.getSnack1());
+                 viewHolder.snack2.setText("Snack2: " + model.getSnack2());
+                 viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View v) {
+                         adapter.getRef(position).removeValue();
+                     }
+                 });
+            }
+        };
+        recyclerView.setAdapter(adapter);
         }
-
-        RecyclerAdapter = new MyListAdapter(this, mealList);
-        RecyclerView.setAdapter(RecyclerAdapter);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,4 +114,10 @@ public class MealPlans extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+        private void deleteMeal(int ID) {
+            mDatabase.child(String.valueOf(ID)).removeValue();
+            //notifyItemRemoved();
+        }
 }

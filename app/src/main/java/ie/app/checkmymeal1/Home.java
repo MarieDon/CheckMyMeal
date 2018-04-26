@@ -34,15 +34,15 @@ public class Home extends AppCompatActivity {
         weight= findViewById(R.id.weight);
         height= findViewById(R.id.height);
 
-        Meal meal = new Meal();
-        meal.setTime("3:30");
-        meal.setBreakfast("hello");
-        meal.setLunch("Goodbuy");
-        meal.setDinner("gdfhg");
-        meal.setSnack1("dfsfgd");
-        meal.setSnack2("sgdsthgfd");
-
-        DatabaseHandler db = new DatabaseHandler(this);
+//        Meal meal = new Meal("monday", breakfast, lunch, dinner, snack1, snack2);
+//        meal.setTime("3:30");
+//        meal.setBreakfast("hello");
+//        meal.setLunch("Goodbuy");
+//        meal.setDinner("gdfhg");
+//        meal.setSnack1("dfsfgd");
+//        meal.setSnack2("sgdsthgfd");
+//
+//        DatabaseHandler db = new DatabaseHandler(this);
        // db.insertRecord(meal);
 
         Log.d("Saved", "Record Inserted");

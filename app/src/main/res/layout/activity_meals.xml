@@ -57,7 +57,7 @@
 
     <Spinner
         android:id="@+id/lunchSpinner"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -70,7 +70,7 @@
 
     <Spinner
         android:id="@+id/dinnerSpinner"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -83,7 +83,7 @@
 
     <Spinner
         android:id="@+id/snackSpinner"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -99,42 +99,42 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:background="@color/buttonColor"
+        android:padding="10dp"
         android:text="@string/addMeals"
         android:textColor="@color/white"
         android:textColorHint="@color/buttonColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="104dp" />
+        app:layout_constraintEnd_toStartOf="@+id/viewMeals"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/viewMeals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="48dp"
         android:background="@color/buttonColor"
+        android:padding="10dp"
         android:text="@string/viewMeals"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addMeals" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
         android:id="@+id/snackArray2"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:entries="@array/SnackArray2"
-        app:layout_constraintBottom_toTopOf="@+id/addMeals"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/snackSpinner"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintTop_toBottomOf="@+id/snackSpinner" />
 
     <TextView
         android:id="@+id/PickFoods"
