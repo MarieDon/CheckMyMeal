@@ -9,12 +9,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.DataOutput;
@@ -37,6 +41,8 @@ public class MealPlans extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private FirebaseDatabase db;
+    private EditText searchText;
+    private Button searchButton;
 
 
 
@@ -47,11 +53,32 @@ public class MealPlans extends AppCompatActivity {
 
         db = FirebaseDatabase.getInstance();
         mDatabase = db.getReference("Meal_Table");
+        searchButton = findViewById(R.id.searchButton);
+        searchText = findViewById(R.id.searchText);
 
         recyclerView= findViewById(R.id.recyclerView);
                 recyclerView.setHasFixedSize(true);
                 layoutManager = new LinearLayoutManager(this);
                 recyclerView.setLayoutManager(layoutManager);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String searching = searchText.getText().toString();
+
+                if(searching.equals("Monday") ||
+                        searching.equals("Tuesday") ||
+                        searching.equals("Wednesday") ||
+                        searching.equals("Thursday") ||
+                        searching.equals("Friday") ||
+                        searching.equals("Saturday") ||
+                        searching.equals("Sunday")) {
+                    firebaseDaySearch(searching);
+                }else{
+                   Toast.makeText(MealPlans.this, "Please start day with a capital." , Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
         adapter = new FirebaseRecyclerAdapter<Meal, MealsViewHolder>(Meal.class,
@@ -76,6 +103,28 @@ public class MealPlans extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
         }
+
+    public void firebaseDaySearch(String search){
+        Query searchQuery = mDatabase.orderByChild("time").startAt(search).endAt(search + "\uf8ff");
+        FirebaseRecyclerAdapter<Meal, MealsViewHolder> myadapter = new FirebaseRecyclerAdapter<Meal, MealsViewHolder>(
+                Meal.class,
+                R.layout.meal_list_row,
+                MealsViewHolder.class,
+                searchQuery) {
+
+            @Override
+            protected void populateViewHolder(MealsViewHolder viewHolder, Meal model, int position) {
+
+                viewHolder.time.setText("Time: " + model.getTime());
+                viewHolder.breakfast.setText("Breakfast: " + model.getBreakfast());
+                viewHolder.lunch.setText("Lunch: " + model.getLunch());
+                viewHolder.dinner.setText("Dinner: " + model.getDinner());
+                viewHolder.snack1.setText("Snack1: " + model.getSnack1());
+                viewHolder.snack2.setText("Snack2: " + model.getSnack2());
+            }
+        };
+        recyclerView.setAdapter(myadapter);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
