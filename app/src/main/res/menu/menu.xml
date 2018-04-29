@@ -30,4 +30,10 @@
         android:orderInCategory="100"
         android:title="Log in"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/logout"
+        android:orderInCategory="100"
+        android:title="Logout"
+        app:showAsAction="never" />
 </menu>

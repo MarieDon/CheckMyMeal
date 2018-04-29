@@ -51,6 +51,8 @@ public class FacebookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook);
 
+
+
         callbackManager = CallbackManager.Factory.create();
         txtEmail = findViewById(R.id.txtEmail);
         txtBirthday = findViewById(R.id.txtBirthday);
@@ -99,7 +101,22 @@ public class FacebookActivity extends AppCompatActivity {
         if(AccessToken.getCurrentAccessToken() != null){
             txtEmail.setText(AccessToken.getCurrentAccessToken().getUserId());
         }
-        printKeyHash();
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "ie.app.checkmymeal1",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                txtView.setText(Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
+       // printKeyHash();
 
     }
 
@@ -118,21 +135,21 @@ public class FacebookActivity extends AppCompatActivity {
         }
     }
 
-    private void printKeyHash() {
-        try{
-            PackageInfo info = getPackageManager().getPackageInfo("ie.app.checkmymeal1", PackageManager.GET_SIGNATURES);
-            for(Signature signature: info.signatures){
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                txtView.setText(Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-    }
+//    private void printKeyHash() {
+//        try{
+//            PackageInfo info = getPackageManager().getPackageInfo("ie.app.checkmymeal1", PackageManager.GET_SIGNATURES);
+//            for(Signature signature: info.signatures){
+//                MessageDigest md = MessageDigest.getInstance("SHA");
+//                md.update(signature.toByteArray());
+//                txtView.setText(Base64.encodeToString(md.digest(), Base64.DEFAULT));
+//            }
+//
+//        } catch (PackageManager.NameNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     @Override

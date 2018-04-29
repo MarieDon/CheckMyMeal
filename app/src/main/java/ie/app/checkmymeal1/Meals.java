@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,6 +37,8 @@ import ie.app.checkmymeal1.Models.Meal;
 public class Meals extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference meal;
+    private FirebaseUser user;
+    private FirebaseAuth mAuth;
     private List<Meal> MealList;
     private ArrayAdapter spinner;
     private TextView nameEntry, calsGender;
@@ -51,7 +55,6 @@ public class Meals extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_meals);
         nameEntry = findViewById(R.id.nameEntry);
-        calsGender = findViewById(R.id.calGender);
         breakfastSpinner = findViewById(R.id.breakfastSpinner);
         lunchSpinner = findViewById(R.id.lunchSpinner);
         dinnerSpinner = findViewById(R.id.dinnerSpinner);
@@ -59,6 +62,8 @@ public class Meals extends AppCompatActivity {
         snackArray2 = findViewById(R.id.snackArray2);
         addMeals = findViewById(R.id.addMeals);
         viewMeals = findViewById(R.id.viewMeals);
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         database = FirebaseDatabase.getInstance();
         meal = database.getReference("Meal_Table");
@@ -103,7 +108,7 @@ public class Meals extends AppCompatActivity {
 //        }
 
 
-        calsGender.setText("You should have " + String.valueOf(cals) + " calories a day");
+//        calsGender.setText("You should have " + String.valueOf(cals) + " calories a day");
 
 
 
@@ -113,6 +118,7 @@ public class Meals extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("button Clicked", "Hello");
                 saveMealToDB();
+                Toast.makeText(Meals.this, "Added Successfully " , Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -366,7 +372,13 @@ public class Meals extends AppCompatActivity {
                 break;
 
             case R.id.login:
-                startActivity(new Intent(Meals.this, FacebookActivity.class));
+                startActivity(new Intent(Meals.this, LoginActivity.class));
+                break;
+
+            case R.id.logout:
+                if(mAuth != null && user != null){
+                    mAuth.signOut();
+                };
                 break;
         }
         return super.onOptionsItemSelected(item);

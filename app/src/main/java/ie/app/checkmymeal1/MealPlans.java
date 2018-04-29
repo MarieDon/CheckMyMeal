@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,10 +32,14 @@ import ie.app.checkmymeal1.Adapter.MyListAdapter;
 import ie.app.checkmymeal1.Database.DatabaseHandler;
 import ie.app.checkmymeal1.Models.Meal;
 
+import com.google.firebase.auth.FirebaseAuth.*;
+
 public class MealPlans extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
+
+    FirebaseAuth mAuth;
 
     private FirebaseRecyclerAdapter<Meal, MealsViewHolder> adapter;
 
@@ -87,7 +93,7 @@ public class MealPlans extends AppCompatActivity {
             @Override
             protected void populateViewHolder(MealsViewHolder viewHolder, Meal model, final int position) {
 
-                 viewHolder.time.setText("Time: " + model.getTime());
+                 viewHolder.time.setText(model.getTime());
                  viewHolder.breakfast.setText("Breakfast: " + model.getBreakfast());
                  viewHolder.lunch.setText("Lunch: " + model.getLunch());
                  viewHolder.dinner.setText("Dinner: " + model.getDinner());
@@ -113,14 +119,20 @@ public class MealPlans extends AppCompatActivity {
                 searchQuery) {
 
             @Override
-            protected void populateViewHolder(MealsViewHolder viewHolder, Meal model, int position) {
+            protected void populateViewHolder(MealsViewHolder viewHolder, Meal model, final int position) {
 
-                viewHolder.time.setText("Time: " + model.getTime());
+                viewHolder.time.setText(model.getTime());
                 viewHolder.breakfast.setText("Breakfast: " + model.getBreakfast());
                 viewHolder.lunch.setText("Lunch: " + model.getLunch());
                 viewHolder.dinner.setText("Dinner: " + model.getDinner());
                 viewHolder.snack1.setText("Snack1: " + model.getSnack1());
                 viewHolder.snack2.setText("Snack2: " + model.getSnack2());
+                viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        adapter.getRef(position).removeValue();
+                    }
+                });
             }
         };
         recyclerView.setAdapter(myadapter);
@@ -159,6 +171,11 @@ public class MealPlans extends AppCompatActivity {
 
             case R.id.login:
                 startActivity(new Intent(MealPlans.this, FacebookActivity.class));
+                break;
+
+            case R.id.logout:
+                mAuth.signOut();
+                startActivity(new Intent(MealPlans.this, LoginActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
